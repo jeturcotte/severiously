@@ -9,16 +9,6 @@ window.addEventListener('resize', function () {
   cvs.height = window.innerHeight;
 });
 
-let mouse = {
-  x: undefined,
-  y: undefined
-};
-
-window.addEventListener('mousemove', function (e) {
-  mouse.x = event.x;
-  mouse.y = event.y;
-});
-
 class Bar {
 
   constructor( x, y, is_vert, depth, movement ) {
@@ -42,7 +32,7 @@ class Bar {
     this.is_vert = is_vert;
 
     let bArray = ['999','AAA','BBB','CCC','DDD','EEE','FFF'];
-    let sArray = ['000000','111111','222222','333333','444'];
+    let sArray = ['000000','111111','222222','333333','444444'];
     if ( Math.random() < 0.05 ) {
       this.color = '#' + bArray[Math.floor(Math.random() * bArray.length)] + bArray[Math.floor(Math.random() * bArray.length)]; // + bArray[Math.floor(Math.random() * bArray.length)];
     } else {
@@ -68,14 +58,14 @@ class Bar {
 
   update = () => {
     if ( this.is_vert ) {
-      if ( this.ulx <= 0 || this.lrx >= window.innerWidth ) {
+      if ( this.ulx <= 0 || this.lrx >= cvs.width ) {
         this.movement = -this.movement;
         console.log( 'moon' );
       }
       this.ulx += this.movement;
       this.lrx += this.movement;
     } else {
-      if ( this.uly <= 0 || this.lry >= window.innerHeight ) {
+      if ( this.uly <= 0 || this.lry >= cvs.height ) {
         this.movement = -this.movement;
       }
       this.uly += this.movement;
